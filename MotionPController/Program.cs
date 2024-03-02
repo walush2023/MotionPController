@@ -1,3 +1,5 @@
+
+
 namespace MotionPController
 {
     internal static class Program
@@ -8,8 +10,18 @@ namespace MotionPController
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            if (!new Gamepad().init())
+            {
+                if (MessageBox.Show("Please install ViGEm Bus before execute.\n\nVisit download page ?", "Error",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Hand) == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start("https://github.com/ViGEm/ViGEmBus/releases/latest");
+                }
+                return;
+            }
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
