@@ -9,8 +9,8 @@ namespace MotionPController
     class SocketHandler
     {
         private byte[] machineName = Encoding.UTF8.GetBytes(Environment.MachineName);
-        private const int tcpPort = 9630;
-        private const int udpPort = 9603;
+        private const int tcpPort = 7063;
+        private const int udpPort = 7064;
 
         private const int MAX_CONNECTIONS = 4;
         private ConcurrentDictionary<IPAddress, Socket> tcpSocket = new ConcurrentDictionary<IPAddress, Socket>();
@@ -94,10 +94,7 @@ namespace MotionPController
             try
             {
                 client.Receive(dateBuffer);
-
-                string key = "MotionPController";
-                string message = Encoding.UTF8.GetString(SubArray(dateBuffer, 2, key.Length));
-                if (string.Compare(message, key) != 0)
+                if (dateBuffer[0] != 0x23)
                 {
                     return;
                 }

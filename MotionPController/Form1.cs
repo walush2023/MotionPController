@@ -42,7 +42,7 @@ namespace MotionPController
                 else
                 {
 
-                    String data = "MotionPController";
+                    String data = "#";
                     foreach (IPAddress ip in ipList)
                     {
                         if (!socket.tcpExist(ip))
@@ -52,10 +52,10 @@ namespace MotionPController
                         data += "," + ip.ToString();
                     }
 
-                    QRCodeData qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
+                    QRCodeData qrCodeData = qrGenerator.CreateQrCode(encodeData(data), QRCodeGenerator.ECCLevel.Q);
                     QRCode qrCode = new QRCode(qrCodeData);
                     Bitmap qrCodeImage = qrCode.GetGraphic(20);
-                    Bitmap resizedImage = new Bitmap(qrCodeImage, new Size(this.Width, this.Height-23));
+                    Bitmap resizedImage = new Bitmap(qrCodeImage, new Size(this.Width, this.Height - 23));
                     this.pictureBox1.Image = resizedImage;
                 }
 
@@ -63,6 +63,16 @@ namespace MotionPController
             }
 
             Debug.WriteLine("QRcode thread dispose");
+        }
+
+        private string encodeData(string data)
+        {
+            byte[] array = System.Text.Encoding.UTF8.GetBytes(data);
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] ^= 0x23;
+            }
+            return System.Text.Encoding.UTF8.GetString(array); ;
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e)
