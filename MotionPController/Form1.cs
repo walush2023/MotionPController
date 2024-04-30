@@ -51,7 +51,7 @@ namespace MotionPController
                 else
                 {
 
-                    String data = "#";
+                    String data = "MotionPController";
                     foreach (IPAddress ip in ipList)
                     {
                         if (!socket.tcpExist(ip))
