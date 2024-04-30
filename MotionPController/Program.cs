@@ -20,7 +20,7 @@ namespace MotionPController
                 if (MessageBox.Show("Please install ViGEm Bus before execute.\n\nVisit download page ?", "Error",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Hand) == DialogResult.Yes)
                 {
-                    System.Diagnostics.Process.Start("https://github.com/ViGEm/ViGEmBus/releases/latest");
+                    System.Diagnostics.Process.Start("explorer", "https://github.com/ViGEm/ViGEmBus/releases/latest");
                 }
                 return;
             }
