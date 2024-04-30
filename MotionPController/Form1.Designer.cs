@@ -53,6 +53,7 @@
             // 
             // notifyIcon1
             // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "Motion PController";
             this.notifyIcon1.Visible = true;
@@ -64,7 +65,7 @@
             this.autoLaumchAtStartupToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(202, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(202, 48);
             // 
             // autoLaumchAtStartupToolStripMenuItem
             // 
